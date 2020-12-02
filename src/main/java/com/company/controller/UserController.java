@@ -17,7 +17,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, value="/authenticate/login")
     @ResponseBody
-    public String addUser(@RequestParam("id_number") String id_number,
+    public String loginUser(@RequestParam("id_number") String id_number,
                           @RequestParam("password") String password) {
         return userService.loginUser(id_number, password);
     }
