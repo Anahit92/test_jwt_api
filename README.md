@@ -10,6 +10,9 @@
 
  
 Registration API link:      /authenticate/register
+
 Login API Link:             /authenticate/login
+
 User verification API link: /authenticate/verify
+
 Cards information API link: /data/cards
