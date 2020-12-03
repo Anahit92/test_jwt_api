@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private void validateIdNumber(String id_number) throws Throwable {
-        if (id_number.length() != 10 || id_number.matches("^[0-9]*$"))
+        if (id_number.length() != 10 || id_number.contains("[a-zA-Z]+"))
             throw new IllegalArgumentException("Invalid id number");
     }
 
