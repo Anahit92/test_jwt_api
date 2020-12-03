@@ -17,8 +17,8 @@ public class CardController {
 
     @Autowired
     CardService cardService;
-
-	@RequestMapping(method = RequestMethod.POST, value="/data/cards")
+	
+    @RequestMapping(method = RequestMethod.POST, value="/data/cards")
     @ResponseBody
     public Map<String, Object> getCards(@RequestParam("token") String token) {
         try {
@@ -30,6 +30,6 @@ public class CardController {
             throw new ResponseStatusException(
                     HttpStatus.INTERNAL_SERVER_ERROR, "ERROR", e);
         }
-	}
+    }
 
 }
