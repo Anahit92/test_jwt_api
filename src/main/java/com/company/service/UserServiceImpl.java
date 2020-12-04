@@ -1,6 +1,7 @@
 package com.company.service;
 
 import com.company.DataAccess;
+import com.company.model.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.GrantedAuthority;
@@ -62,6 +63,27 @@ public class UserServiceImpl implements UserService {
         }
 
         return map;
+    }
+    @Override
+    public User getUserByToken(String token) throws Throwable {
+        User user = new User();
+        String query = String.format("SELECT * FROM public.user where token = '%s'", token);
+        try (Statement statement = con.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            if (!resultSet.isBeforeFirst()) {
+                throw new IllegalArgumentException("user not found");
+            }
+            while (resultSet.next()) {
+                user.setId((UUID) resultSet.getObject("id"));
+                user.setId_number(resultSet.getString("id_number"));
+                user.setPassword(resultSet.getString("password"));
+                user.setPhone(resultSet.getString("phone"));
+                user.setToken(resultSet.getString("token"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
     private void validateIdNumber(String id_number) throws Throwable {

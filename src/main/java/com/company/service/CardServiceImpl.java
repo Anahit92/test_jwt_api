@@ -4,6 +4,7 @@ import com.company.DataAccess;
 import com.company.model.Card;
 import com.company.model.User;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -20,10 +21,13 @@ public class CardServiceImpl implements CardService {
 
     private final Connection con = new DataAccess().getConnection();
 
+    @Autowired
+    UserService userService;
+
     @Override
-    public Map<String, Object> getCards(String token) {
+    public Map<String, Object> getCards(String token) throws Throwable {
         Map<String, Object> map = new HashMap<>();
-        UUID id = getUserByToken(token).getId();
+        UUID id = userService.getUserByToken(token).getId();
         List<Map<String, String>> currency = getCurrencyAccount(id);
 
         try (Statement statement = con.createStatement();
@@ -44,7 +48,7 @@ public class CardServiceImpl implements CardService {
     @Override
     public Map<String, String> addCard(String token, String number, String type) throws Throwable {
         Map<String, String> map = new HashMap<>();
-        User user = getUserByToken(token);
+        User user = userService.getUserByToken(token);
         UUID card_id = UUID.randomUUID();
         String query = "insert into public.card values (?, ?, ?)";
         try (PreparedStatement preparedStatement = con.prepareStatement(query)) {
@@ -128,27 +132,6 @@ public class CardServiceImpl implements CardService {
             total = total + (Double.valueOf(obj.get("amount")) * 1.0 / rate);
         }
         return total;
-    }
-
-    private User getUserByToken(String token) {
-        User user = new User();
-        String query = String.format("SELECT * FROM public.user where token = '%s'", token);
-        try (Statement statement = con.createStatement();
-             ResultSet resultSet = statement.executeQuery(query)) {
-            if (!resultSet.isBeforeFirst()) {
-                throw new IllegalArgumentException("user not found");
-            }
-            while (resultSet.next()) {
-                user.setId((UUID) resultSet.getObject("id"));
-                user.setId_number(resultSet.getString("id_number"));
-                user.setPassword(resultSet.getString("password"));
-                user.setPhone(resultSet.getString("phone"));
-                user.setToken(resultSet.getString("token"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return user;
     }
 
     private List<Map<String, String>> getCurrencyAccount(UUID user_id) {
