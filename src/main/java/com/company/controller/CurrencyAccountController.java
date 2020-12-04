@@ -27,11 +27,9 @@ public class CurrencyAccountController {
         try {
             return currencyAccountService.addAmount(token, card_number, currency, amount);
         } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "Invalid parameter", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid parameter", e);
         } catch (Throwable e) {
-            throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR, "ERROR", e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "ERROR", e);
         }
     }
 

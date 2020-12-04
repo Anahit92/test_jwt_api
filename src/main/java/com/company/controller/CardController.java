@@ -24,11 +24,9 @@ public class CardController {
         try {
             return cardService.getCards(token);
         } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "Invalid parameter", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid parameter", e);
         } catch (Throwable e) {
-            throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR, "ERROR", e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "ERROR", e);
         }
     }
 
@@ -40,11 +38,9 @@ public class CardController {
         try {
             return cardService.addCard(token, number, type);
         } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "Invalid parameter", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid parameter", e);
         } catch (Throwable e) {
-            throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR, "ERROR", e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "ERROR", e);
         }
     }
 

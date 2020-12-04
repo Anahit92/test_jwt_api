@@ -25,11 +25,9 @@ public class UserController {
             response.put("token", userService.loginUser(id_number, password));
             return response;
         } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "Invalid username or password", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid username or password", e);
         } catch (Throwable e) {
-            throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR, "ERROR", e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "ERROR", e);
         }
     }
 
@@ -42,11 +40,9 @@ public class UserController {
         try {
             userService.addUser(phone, id_number, password);
         } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "Invalid parameter", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid parameter", e);
         } catch (Throwable e) {
-            throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR, "ERROR", e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "ERROR", e);
         }
     }
 
@@ -56,11 +52,9 @@ public class UserController {
         try {
             return userService.verifyUser(token);
         } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "Invalid parameter", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid parameter", e);
         } catch (Throwable e) {
-            throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR, "ERROR", e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "ERROR", e);
         }
     }
 
