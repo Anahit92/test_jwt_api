@@ -1,6 +1,7 @@
 package com.company.service;
 
 import com.company.DataAccess;
+import com.company.model.Card;
 import com.company.model.User;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,57 @@ public class CardServiceImpl implements CardService {
             e.printStackTrace();
         }
         return map;
+    }
+
+    @Override
+    public Map<String, String> addCard(String token, String number, String type) throws Throwable {
+        Map<String, String> map = new HashMap<>();
+        User user = getUserByToken(token);
+        UUID card_id = UUID.randomUUID();
+        String query = "insert into public.card values (?, ?, ?)";
+        try (PreparedStatement preparedStatement = con.prepareStatement(query)) {
+            preparedStatement.setObject(1, card_id);
+            preparedStatement.setString(2, number);
+            preparedStatement.setString(3, type);
+            preparedStatement.execute();
+            map.put("message", String.format("card added for %s user", user.getId_number()));
+            addAccount(user.getId(), card_id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+    @Override
+    public Card getCardByNumber(String number) throws Throwable {
+        Card card = new Card();
+        String query = String.format("SELECT * FROM public.card where number = '%s'", number);
+        try (Statement statement = con.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            if (!resultSet.isBeforeFirst()) {
+                throw new IllegalArgumentException("card not found");
+            }
+            while (resultSet.next()) {
+                card.setId((UUID) resultSet.getObject("id"));
+                card.setNumber(resultSet.getString("number"));
+                card.setType(resultSet.getString("type"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return card;
+    }
+
+    public void addAccount(UUID user_id, UUID card_id) throws Throwable {
+        String query = "insert into public.account values (?, ?, ?)";
+        try (PreparedStatement preparedStatement = con.prepareStatement(query)) {
+            preparedStatement.setObject(1, UUID.randomUUID());
+            preparedStatement.setObject(2, user_id);
+            preparedStatement.setObject(3, card_id);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private Object currencyCalculator(List<Map<String, String>> currency) {

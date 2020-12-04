@@ -17,12 +17,28 @@ public class CardController {
 
     @Autowired
     CardService cardService;
-	
-    @RequestMapping(method = RequestMethod.POST, value="/data/cards")
+
+    @RequestMapping(method = RequestMethod.POST, value = "/data/cards")
     @ResponseBody
     public Map<String, Object> getCards(@RequestParam("token") String token) {
         try {
             return cardService.getCards(token);
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "Invalid parameter", e);
+        } catch (Throwable e) {
+            throw new ResponseStatusException(
+                    HttpStatus.INTERNAL_SERVER_ERROR, "ERROR", e);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/data/card")
+    @ResponseBody
+    public Map<String, String> addCard(@RequestParam("token") String token,
+                                       @RequestParam("number") String number,
+                                       @RequestParam("type") String type) {
+        try {
+            return cardService.addCard(token, number, type);
         } catch (IllegalArgumentException e) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "Invalid parameter", e);

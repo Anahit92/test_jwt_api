@@ -46,6 +46,9 @@ CREATE TABLE public.currency
     name text COLLATE pg_catalog."default",
     CONSTRAINT currency_pkey PRIMARY KEY (id)
 );
+insert into public.currency values('d555f6d4-d75b-4925-8df7-094946950ff4', 'USD');
+insert into public.currency values('dc78530d-ed9b-42f8-bc2c-37cbf60e7e78', 'AMD');
+insert into public.currency values('372f37de-bb03-4c3b-b86e-52d7c0091af0', 'EUR');
 
 CREATE TABLE public.currency_account
 (
