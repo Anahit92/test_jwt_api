@@ -1,269 +1,285 @@
 {
-	"id": "f6bd8f7b-fb0a-5378-c9b7-91d44eebd172",
-	"name": "test_api",
-	"description": "",
-	"order": [
-		"3cfcf5bc-35ae-60de-7d1e-f035c6e566e6",
-		"16eea19a-4930-acb1-aa6e-5abb29d87ada",
-		"5db45b1a-24c4-85e7-6647-b0b1d04ed3c3",
-		"06d068c5-997d-37f3-5dcf-4f03c170bf7c",
-		"5c0bc121-e6fe-2565-ce4d-4242995b4620"
-	],
-	"folders": [],
-	"folders_order": [],
-	"timestamp": 1607093768683,
-	"owner": "8804629",
-	"public": false,
-	"requests": [
+	"info": {
+		"_postman_id": "84b0b8c4-f8a6-4b22-9939-1fc0419df8bd",
+		"name": "test_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
 		{
-			"id": "06d068c5-997d-37f3-5dcf-4f03c170bf7c",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/x-www-form-urlencoded",
-					"description": "",
-					"enabled": true
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "phone",
+							"value": "4200103662",
+							"type": "text"
+						},
+						{
+							"key": "id_number",
+							"value": "9999999499",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "4200103662",
+							"type": "text"
+						},
+						{
+							"key": "re_password",
+							"value": "4200103662",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:9000/authenticate/register",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"authenticate",
+						"register"
+					]
 				}
-			],
-			"url": "localhost:8080/authenticate/register",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "POST",
-			"collectionId": "f6bd8f7b-fb0a-5378-c9b7-91d44eebd172",
-			"data": [
-				{
-					"key": "phone",
-					"value": "4200103662",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "id_number",
-					"value": "9999999499",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "password",
-					"value": "4200103662",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "re_password",
-					"value": "4200103662",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				}
-			],
-			"dataMode": "urlencoded",
-			"name": "localhost:8080/authenticate/register",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1607093817821,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {}
+			},
+			"response": []
 		},
 		{
-			"id": "16eea19a-4930-acb1-aa6e-5abb29d87ada",
-			"headers": "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJ0ZXN0VG9rZW4iLCJzdWIiOiI5OTk5OTk5NDk5IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTYwNzA5MzMzNywiZXhwIjoxNjA3MDkzOTM3fQ.nBpgj9o2B63qaFxHcU1zXZpq1A1PZepDIqmMjR7RtTqXXLE_-gGDGJsDhOksBFagTK5fHJFiCa4ojGhAkm7mHw\nContent-Type: application/x-www-form-urlencoded\n",
-			"headerData": [
+			"name": "Login",
+			"event": [
 				{
-					"key": "Authorization",
-					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJ0ZXN0VG9rZW4iLCJzdWIiOiI5OTk5OTk5NDk5IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTYwNzA5MzMzNywiZXhwIjoxNjA3MDkzOTM3fQ.nBpgj9o2B63qaFxHcU1zXZpq1A1PZepDIqmMjR7RtTqXXLE_-gGDGJsDhOksBFagTK5fHJFiCa4ojGhAkm7mHw",
-					"description": "",
-					"enabled": true
+					"listen": "test",
+					"script": {
+						"id": "c3c1dcfc-6e42-4fd4-8fe1-c30dfda60b00",
+						"exec": [
+							"var token = pm.response.json().token;\r",
+							"pm.globals.set(\"token\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id_number",
+							"value": "9999999499",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "4200103662",
+							"type": "text"
+						}
+					]
 				},
-				{
-					"key": "Content-Type",
-					"value": "application/x-www-form-urlencoded",
-					"description": "",
-					"enabled": true
+				"url": {
+					"raw": "localhost:9000/authenticate/login",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"authenticate",
+						"login"
+					]
 				}
-			],
-			"url": "localhost:8080/data/cards",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "POST",
-			"collectionId": "f6bd8f7b-fb0a-5378-c9b7-91d44eebd172",
-			"data": [
-				{
-					"key": "token",
-					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJ0ZXN0VG9rZW4iLCJzdWIiOiI5OTk5OTk5NDk5IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTYwNzA5MzMzNywiZXhwIjoxNjA3MDkzOTM3fQ.nBpgj9o2B63qaFxHcU1zXZpq1A1PZepDIqmMjR7RtTqXXLE_-gGDGJsDhOksBFagTK5fHJFiCa4ojGhAkm7mHw",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				}
-			],
-			"dataMode": "urlencoded",
-			"name": "localhost:8080/data/cards",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1607093801421,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {}
+			},
+			"response": []
 		},
 		{
-			"id": "3cfcf5bc-35ae-60de-7d1e-f035c6e566e6",
-			"headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJ0ZXN0VG9rZW4iLCJzdWIiOiI5OTk5OTk5NDk5IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTYwNzA5MzMzNywiZXhwIjoxNjA3MDkzOTM3fQ.nBpgj9o2B63qaFxHcU1zXZpq1A1PZepDIqmMjR7RtTqXXLE_-gGDGJsDhOksBFagTK5fHJFiCa4ojGhAkm7mHw\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/x-www-form-urlencoded",
-					"description": "",
-					"enabled": true
+			"name": "VerifyToken",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "text"
+						}
+					]
 				},
-				{
-					"key": "Authorization",
-					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJ0ZXN0VG9rZW4iLCJzdWIiOiI5OTk5OTk5NDk5IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTYwNzA5MzMzNywiZXhwIjoxNjA3MDkzOTM3fQ.nBpgj9o2B63qaFxHcU1zXZpq1A1PZepDIqmMjR7RtTqXXLE_-gGDGJsDhOksBFagTK5fHJFiCa4ojGhAkm7mHw",
-					"description": "",
-					"enabled": true
+				"url": {
+					"raw": "localhost:9000/authenticate/verify",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"authenticate",
+						"verify"
+					]
 				}
-			],
-			"url": "localhost:8080/data/card",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "POST",
-			"collectionId": "f6bd8f7b-fb0a-5378-c9b7-91d44eebd172",
-			"data": [
-				{
-					"key": "token",
-					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJ0ZXN0VG9rZW4iLCJzdWIiOiI5OTk5OTk5NDk5IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTYwNzA5MzMzNywiZXhwIjoxNjA3MDkzOTM3fQ.nBpgj9o2B63qaFxHcU1zXZpq1A1PZepDIqmMjR7RtTqXXLE_-gGDGJsDhOksBFagTK5fHJFiCa4ojGhAkm7mHw",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "number",
-					"value": "4444-5555-0000-5555",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "type",
-					"value": "MASTERCARD",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				}
-			],
-			"dataMode": "urlencoded",
-			"name": "localhost:8080/data/card",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1607093787076,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {}
+			},
+			"response": []
 		},
 		{
-			"id": "5c0bc121-e6fe-2565-ce4d-4242995b4620",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/x-www-form-urlencoded",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "localhost:8080/authenticate/login",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "POST",
-			"collectionId": "f6bd8f7b-fb0a-5378-c9b7-91d44eebd172",
-			"data": [
-				{
-					"key": "id_number",
-					"value": "9999999499",
-					"description": "",
-					"type": "text",
-					"enabled": true
+			"name": "AddCard",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "number",
+							"value": "4444-5555-0000-5555",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "MASTERCARD",
+							"type": "text"
+						}
+					]
 				},
-				{
-					"key": "password",
-					"value": "4200103662",
-					"description": "",
-					"type": "text",
-					"enabled": true
+				"url": {
+					"raw": "localhost:9000/data/card",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"data",
+						"card"
+					]
 				}
-			],
-			"dataMode": "urlencoded",
-			"name": "localhost:8080/authenticate/login",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1607093826766,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {}
+			},
+			"response": []
 		},
 		{
-			"id": "5db45b1a-24c4-85e7-6647-b0b1d04ed3c3",
-			"headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJ0ZXN0VG9rZW4iLCJzdWIiOiI5OTk5OTk5NDk5IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTYwNzA5MzMzNywiZXhwIjoxNjA3MDkzOTM3fQ.nBpgj9o2B63qaFxHcU1zXZpq1A1PZepDIqmMjR7RtTqXXLE_-gGDGJsDhOksBFagTK5fHJFiCa4ojGhAkm7mHw\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/x-www-form-urlencoded",
-					"description": "",
-					"enabled": true
+			"name": "AddAmount",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "card_number",
+							"value": "4444-5555-0000-5555",
+							"type": "text"
+						},
+						{
+							"key": "currency",
+							"value": "USD",
+							"type": "text"
+						},
+						{
+							"key": "amount",
+							"value": "345000",
+							"type": "text"
+						}
+					]
 				},
-				{
-					"key": "Authorization",
-					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJ0ZXN0VG9rZW4iLCJzdWIiOiI5OTk5OTk5NDk5IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTYwNzA5MzMzNywiZXhwIjoxNjA3MDkzOTM3fQ.nBpgj9o2B63qaFxHcU1zXZpq1A1PZepDIqmMjR7RtTqXXLE_-gGDGJsDhOksBFagTK5fHJFiCa4ojGhAkm7mHw",
-					"description": "",
-					"enabled": true
+				"url": {
+					"raw": "localhost:9000/card/amount",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"card",
+						"amount"
+					]
 				}
-			],
-			"url": "localhost:8080/authenticate/verify",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "POST",
-			"collectionId": "f6bd8f7b-fb0a-5378-c9b7-91d44eebd172",
-			"data": [
-				{
-					"key": "token",
-					"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJ0ZXN0VG9rZW4iLCJzdWIiOiI5OTk5OTk5NDk5IiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTYwNzA5MzMzNywiZXhwIjoxNjA3MDkzOTM3fQ.nBpgj9o2B63qaFxHcU1zXZpq1A1PZepDIqmMjR7RtTqXXLE_-gGDGJsDhOksBFagTK5fHJFiCa4ojGhAkm7mHw",
-					"description": "",
-					"type": "text",
-					"enabled": true
+			},
+			"response": []
+		},
+		{
+			"name": "GetCard",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:9000/data/cards",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"data",
+						"cards"
+					]
 				}
-			],
-			"dataMode": "urlencoded",
-			"name": "localhost:8080/authenticate/verify",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1607093809936,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {}
+			},
+			"response": []
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
